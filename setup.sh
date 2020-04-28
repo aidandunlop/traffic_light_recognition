@@ -32,5 +32,5 @@ fi
 
 
 printf 'Everything set up. You are now ready to begin training or inference.\n'
-printf 'To train, use `python traffic_lights train`\n'
-printf 'To predict, use `python traffic_lights predict`\n'
+printf 'To train, use `python -m traffic_lights train`\n'
+printf 'To predict, use `python -m traffic_lights predict`\n'

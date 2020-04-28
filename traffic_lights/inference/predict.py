@@ -8,7 +8,6 @@ def predict(image_path, model_path):
     print(model_path)
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
     model = torch.load(model_path, map_location=device)
-    print("ooo", model.eval)
     model.eval()
     model.to(device)
     to_tensor = torchvision.transforms.ToTensor()
