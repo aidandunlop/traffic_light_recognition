@@ -3,7 +3,7 @@
 In this project I created a traffic light recognition system using a pretrained Faster RCNN model, fine-tuned on the [LISA Traffic Light Dataset](https://www.kaggle.com/mbornoe/lisa-traffic-light-dataset), and written in PyTorch.
 
 ## Installation 
-To get started, set up an virtualenv with python 3+ installed and run `./setup.sh`.
+To get started, set up an virtualenv with python 3.7+ installed and run `./setup.sh`.
 
 This will download any dependencies. If you haven't got a copy of the [dataset](https://www.kaggle.com/mbornoe/lisa-traffic-light-dataset), you can run `./setup.sh --download`, but note that you'll need to provide kaggle CLI authentication variables, like so:
 `KAGGLE_USERNAME=<username> KAGGLE_KEY=<key> ./setup.sh --download`
