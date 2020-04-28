@@ -1,5 +1,5 @@
 import unittest
-from mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 from torch.utils.data import DataLoader
 from test.utils import create_mock_dataset, create_mock_data
 from traffic_lights.data.loading import split_data
