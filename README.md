@@ -1,19 +1,29 @@
 # traffic-light-recognition
 
-With the potential to improve road safety, reduce congestion and free up time for human drivers, the impact that the self driving car might have is huge, and needs to be taken seriously. 
-[McKinsey & Co. consulting firm reported](https://www.wsj.com/articles/self-driving-cars-could-cut-down-on-accidents-study-says-1425567905) that widespread embrace of self-driving vehicles could eliminate 90% of all auto accidents in the U.S.
+In this project I created a traffic light recognition system using a pretrained Faster RCNN model, fine tuned on the [LISA Traffic Light Dataset](https://www.kaggle.com/mbornoe/lisa-traffic-light-dataset), and written in PyTorch.
 
-In order for self driving cars to become a reality, the car needs to be able to identify it’s environment in order to navigate around it safely. 
-One clear example of this is the detection and classification of traffic light signals. 
-The car will need to obey the signals, and act accordingly based on the state of the traffic light. 
-A system will have to be developed that, based on the cameras or sensors on the car, determines whether there are any traffic lights near by and what to do when approaching them.
+## Installation 
+To get started, set up an virtualenv with python 3+ installed and run `./setup.sh`.
 
-In this project, I’m going to attempt to use Deep Learning techniques, such as Convolutional Neural Networks, on the [LISA traffic light dataset](https://www.kaggle.com/mbornoe/lisa-traffic-light-dataset). 
-This is a supervised classification problem - first I will need to determine whether or not a traffic light is in a frame, and then determine what state a traffic light is in within that frame. 
-The dataset has labelled data which can be used to learn a model of traffic light images: each frame in the dataset has the pixel coordinates of each visible traffic light, and the state of the traffic light (e.g. “Stop”). 
+This will download any dependencies. If you haven't got a copy of the [dataset](https://www.kaggle.com/mbornoe/lisa-traffic-light-dataset), you can run `./setup.sh --download`, but note that you'll need to provide kaggle CLI authentication variables, like so:
+`KAGGLE_USERNAME=<username> KAGGLE_KEY=<key> ./setup.sh --download`
 
-To download the dataset, ensure you have pip and kaggle installed (and authenticated) and run `./download_dataset.sh`. 
+More info on kaggle CLI authentication here: https://www.kaggle.com/docs/api#authentication
 
-## Data exploration
-I've started exploring the LISA dataset, and you can view my adventures in [`Data_Exploration.ipynb`](https://github.com/aidandunlop/traffic-lights/blob/master/Data_Exploration.ipynb). 
-It's also on [Kaggle](https://www.kaggle.com/aidandunlop/capstone-project-data-exploration).
+## Training
+To run the training pipeline, run `python -m traffic_lights train`. This assumes the LISA dataset is stored in the root directory and named `lisa-traffic-light-dataset`. If it's stored somewhere else, use the `-d` or `--dataset` flag and specify the path, e.g. `python -m traffic_lights train -d /path/to/dataset`.
+
+This will take some time, given the size of the dataset and the fact we're tuning the hyperparameters to get the best model. Once complete, a saved model `.pth` file will be located in the root of the repo.
+
+## Prediction
+To predict the location and state of a traffic light in a given image, run `python -m traffic_lights -i <image_file> -m <model_file>`, where `<image_file>` is the path to the image you want to predict with, and `<model_file>` is the saved trained model. This will save a new image `detection.png`.
+
+### Prediction Example
+If all being well, you'll get an output image like the one below.
+
+![example_traffic_light_detection_image](detection.png)
+## Running tests
+Run `python -m unittest discover -v` from the root directory.
+
+## Notebooks
+I started this project using Jupyter Notebooks, but moved away from them, for reasons that are outlined well [here](https://www.youtube.com/watch?v=7jiPeIFXb6U). I've included the notebooks in this repo under `notebooks/` for reference.
