@@ -1,6 +1,6 @@
 # Traffic light recognition
 
-In this project I created a traffic light recognition system using a pretrained Faster RCNN model, fine tuned on the [LISA Traffic Light Dataset](https://www.kaggle.com/mbornoe/lisa-traffic-light-dataset), and written in PyTorch.
+In this project I created a traffic light recognition system using a pretrained Faster RCNN model, fine-tuned on the [LISA Traffic Light Dataset](https://www.kaggle.com/mbornoe/lisa-traffic-light-dataset), and written in PyTorch.
 
 ## Installation 
 To get started, set up an virtualenv with python 3+ installed and run `./setup.sh`.
