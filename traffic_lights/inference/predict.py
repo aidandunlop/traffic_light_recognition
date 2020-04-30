@@ -17,7 +17,6 @@ def load_model(model_path):
 
 def predict_from_path(stored_image, model, device, threshold=None, output_file=None):
     image = Image.open(stored_image)
-
     return predict(image, model, device, threshold, output_file)
 
 
