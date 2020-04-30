@@ -1,15 +1,44 @@
 import torch
-import torchvision
+import io
 from PIL import Image
-from .utils import plot_detection
+from traffic_lights.data.constants import REVERSED_CLASS_LABEL_MAP
+
+from .utils import threshold_scores, plot_prediction
+from traffic_lights.data.transforms import get_transform
 
 
-def predict(image_path, model_path):
-    print(model_path)
+def load_model(model_path):
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
     model = torch.load(model_path, map_location=device)
     model.eval()
     model.to(device)
-    to_tensor = torchvision.transforms.ToTensor()
-    image = Image.open(image_path).convert("RGB")
-    plot_detection(to_tensor(image), model, device, 0.8, rect_th=2)
+    return (model, device)
+
+
+def predict_from_path(stored_image, model, device, threshold=None, output_file=None):
+    image = Image.open(stored_image)
+
+    return predict(image, model, device, threshold, output_file)
+
+
+def predict_from_bytes(stored_image, model, device):
+    image = Image.open(io.BytesIO(stored_image))
+    return predict(image, model, device)
+
+
+def predict(image, model, device, threshold=None, output_file=None):
+    transformed_image = get_transform()(image.convert("RGB"))
+    model_output = model([transformed_image.to(device)])
+    prediction = {
+        "boxes": model_output[0]["boxes"].tolist(),
+        "confidence_scores": model_output[0]["scores"].tolist(),
+        "labels": [
+            REVERSED_CLASS_LABEL_MAP[label]
+            for label in model_output[0]["labels"].tolist()
+        ],
+    }
+    if threshold:
+        prediction = threshold_scores(prediction, threshold)
+    if output_file:
+        plot_prediction(prediction, image, output_file)
+    return prediction
