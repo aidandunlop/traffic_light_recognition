@@ -1,0 +1,6 @@
+/misc
+/notebooks
+*.ttf
+*.png
+*.jpg
+/traffic_lights/training
