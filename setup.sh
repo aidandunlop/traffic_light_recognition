@@ -14,7 +14,7 @@ fi
 
 # # install dependencies
 printf 'Installing dependencies...\n'
-pip install -r requirements.txt
+pip install -r requirements_full.txt
 
 # download dataset from kaggle if needed
 if [[ "$1" == "--download" || ! -d "lisa-traffic-light-dataset" ]]
