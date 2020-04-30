@@ -1,4 +1,4 @@
-ax-platform==0.1.10
+ax-platform==0.1.9
 black==19.10b0
 Flask==1.1.2
 kaggle==1.5.6
