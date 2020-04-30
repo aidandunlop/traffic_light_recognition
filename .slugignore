@@ -1,6 +1,9 @@
+.git/
+.github/
 /misc
 /notebooks
+/test
+/traffic_lights/training
 *.ttf
 *.png
 *.jpg
-/traffic_lights/training

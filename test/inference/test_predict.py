@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from traffic_lights.inference.predict import predict, load_model
-from test.utils import create_mock_image
+from traffic_lights.inference.predict import load_model
 
 
 class MockModel:
