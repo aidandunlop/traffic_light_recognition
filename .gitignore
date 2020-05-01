@@ -1,6 +1,5 @@
 *.zip
 lisa-traffic-light-dataset/
-cocoapi/
 .DS_Store
 .vscode/
 .ipynb_checkpoints/

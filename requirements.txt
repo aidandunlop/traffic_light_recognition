@@ -5,5 +5,6 @@ gunicorn==20.0.4
 numpy==1.17.4
 pandas==0.25.1
 pillow==6.2.2
-torch==1.4.0
+https://download.pytorch.org/whl/cpu/torch-1.4.0%2Bcpu-cp37-cp37m-linux_x86_64.whl ; sys_platform == "linux"
+https://download.pytorch.org/whl/cpu/torch-1.4.0-cp37-none-macosx_10_7_x86_64.whl ; sys_platform == "darwin"
 torchvision==0.5.0
