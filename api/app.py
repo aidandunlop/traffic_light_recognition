@@ -6,6 +6,8 @@ from traffic_lights.inference.predict import load_model, predict_from_bytes
 
 app = Flask(__name__)
 
+temp_modal_path = "/tmp/tlr_model.pth"
+
 
 def download_model():
     try:
@@ -14,7 +16,7 @@ def download_model():
             aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
             aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
         )
-        file = s3.download_file(os.environ["AWS_BUCKET"], "model.pth", "api/model.pth")
+        file = s3.download_file(os.environ["AWS_BUCKET"], "model.pth", temp_modal_path)
     except boto3.exceptions.ResourceNotExistsError as e:
         if e.response["Error"]["Code"] == "404":
             print("The object does not exist.")
@@ -28,9 +30,8 @@ def download_model():
 def before_first_request():
     download_model()
     warnings.filterwarnings("ignore")
-    model_path = "./model.pth"
     global model, device
-    model, device = load_model(model_path)
+    model, device = load_model(temp_modal_path)
 
 
 @app.route("/predict", methods=["POST"])
