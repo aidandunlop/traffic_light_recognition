@@ -5,4 +5,4 @@ lisa-traffic-light-dataset/
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
 __pycache__/
-*.pth
+*.pth*

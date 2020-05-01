@@ -1,5 +1,6 @@
 # used for flask application, only for inference
 black==19.10b0
+boto3==1.13.0
 Flask==1.1.2
 gunicorn==20.0.4
 numpy==1.17.4
