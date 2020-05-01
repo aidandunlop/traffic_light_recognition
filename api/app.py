@@ -4,8 +4,6 @@ import warnings
 from flask import Flask, jsonify, request
 from traffic_lights.inference.predict import load_model, predict_from_bytes
 
-app = Flask(__name__)
-
 temp_modal_path = "/tmp/tlr_model.pth"
 
 
@@ -26,12 +24,16 @@ def download_model():
     return file
 
 
-@app.before_first_request
-def before_first_request():
+def on_startup():
+    print("Downloading model from S3...")
     download_model()
     warnings.filterwarnings("ignore")
     global model, device
     model, device = load_model(temp_modal_path)
+
+
+on_startup()
+app = Flask(__name__)
 
 
 @app.route("/predict", methods=["POST"])
