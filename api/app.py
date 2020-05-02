@@ -1,39 +1,18 @@
-import boto3
-import os
 import warnings
 from flask import Flask, jsonify, request
 from traffic_lights.inference.predict import load_model, predict_from_bytes
+from .download_model import temp_modal_path
 
-temp_modal_path = "/tmp/tlr_model.pth"
-
-
-def download_model():
-    try:
-        s3 = boto3.client(
-            "s3",
-            aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
-            aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
-        )
-        file = s3.download_file(os.environ["AWS_BUCKET"], "model.pth", temp_modal_path)
-    except boto3.exceptions.ResourceNotExistsError as e:
-        if e.response["Error"]["Code"] == "404":
-            print("The object does not exist.")
-        else:
-            raise
-
-    return file
+app = Flask(__name__)
 
 
-def on_startup():
-    print("Downloading model from S3...")
-    download_model()
+@app.before_first_request
+def before_first_request():
+    print("Loading the model...")
     warnings.filterwarnings("ignore")
     global model, device
     model, device = load_model(temp_modal_path)
-
-
-on_startup()
-app = Flask(__name__)
+    print("Model loaded.")
 
 
 @app.route("/predict", methods=["POST"])
