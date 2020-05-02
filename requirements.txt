@@ -1,11 +1,11 @@
-# used for flask application, only for inference
+ax-platform==0.1.9
 black==19.10b0
-boto3==1.13.0
 Flask==1.1.2
 gunicorn==20.0.4
+kaggle==1.5.6
 numpy==1.17.4
 pandas==0.25.1
 pillow==6.2.2
-https://download.pytorch.org/whl/cpu/torch-1.4.0%2Bcpu-cp37-cp37m-linux_x86_64.whl ; sys_platform == "linux"
-https://download.pytorch.org/whl/cpu/torch-1.4.0-cp37-none-macosx_10_7_x86_64.whl ; sys_platform == "darwin"
+scikit-learn==0.21.3
+torch==1.4.0
 torchvision==0.5.0
