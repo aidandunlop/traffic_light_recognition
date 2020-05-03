@@ -15,6 +15,13 @@ def before_first_request():
     print("Model loaded.")
 
 
+@app.route("/")
+def entry():
+    return (
+        "Traffic Light recognition using Pytorch. POST an image to /predict to try it"
+    )
+
+
 @app.route("/predict", methods=["POST"])
 def predict_image():
     if request.method == "POST":
