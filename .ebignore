@@ -6,8 +6,9 @@ lisa-traffic-light-dataset/
 **/.ipynb_checkpoints/
 __pycache__/
 *.pth*
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+*.ttf
+*.png
+*.jpg
+test/
+notebooks/
+misc/
