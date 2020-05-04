@@ -3,6 +3,7 @@ version: 0.1
 phases:
   pre_build:
     commands:
+      - pip install -r requirements.txt
       - python -m unittest discover -v
 
 artifacts:
