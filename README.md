@@ -10,6 +10,8 @@ So, for example, as a cURL command:
 --form 'file=@/path/to/file.png'
 ```
 
+This will give you the bounding boxes, scores and labels for any traffic lights the model finds in the image provided.
+
 ## Installation 
 To get started, set up an virtualenv with python 3.7+ installed and run `./setup.sh`.
 
@@ -24,7 +26,7 @@ To run the training pipeline, run `python -m traffic_lights train`. This assumes
 This will take some time, given the size of the dataset and the fact we're tuning the hyperparameters to get the best model. Once complete, a saved model `.pth` file will be located in the root of the repo.
 
 ## Prediction
-To predict the location and state of a traffic light in a given image, run `python -m traffic_lights -i <image_file> -m <model_file>`, where `<image_file>` is the path to the image you want to predict with, and `<model_file>` is the saved trained model. This will save a new image `detection.png`.
+To predict the location and state of a traffic light in a given image, run `python -m traffic_lights -i <image_file> -m <model_file>`, where `<image_file>` is the path to the image you want to predict with, and `<model_file>` is the saved trained model. This will output the bounding boxes. To plot the predictions on the image, supply an output file with `-o <output>`.
 
 ### Prediction Example
 If all being well, you'll get an output image like the one below.
