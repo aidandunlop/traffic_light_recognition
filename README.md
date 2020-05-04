@@ -2,6 +2,14 @@
 
 In this project I created a traffic light recognition system using a pretrained Faster RCNN model, fine-tuned on the [LISA Traffic Light Dataset](https://www.kaggle.com/mbornoe/lisa-traffic-light-dataset), and written in PyTorch.
 
+## Demo
+To try out this project, send a POST request to http://trafficlightrecognition-env.eba-jyy6rmgy.us-east-1.elasticbeanstalk.com/ with an image in the `file` key.
+So, for example, as a cURL command:
+```
+  curl --request POST 'http://trafficlightrecognition-env.eba-jyy6rmgy.us-east-1.elasticbeanstalk.com/predict' \
+--form 'file=@/path/to/file.png'
+```
+
 ## Installation 
 To get started, set up an virtualenv with python 3.7+ installed and run `./setup.sh`.
 
