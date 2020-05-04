@@ -1,7 +1,9 @@
 import warnings
 from flask import Flask, jsonify, request
 from traffic_lights.inference.predict import load_model, predict_from_bytes
-from .download_model import temp_modal_path
+
+TEMP_MODAL_PATH = "/tmp/tlr_model.pth"
+
 
 app = Flask(__name__)
 
@@ -11,7 +13,7 @@ def before_first_request():
     print("Loading the model...")
     warnings.filterwarnings("ignore")
     global model, device
-    model, device = load_model(temp_modal_path)
+    model, device = load_model(TEMP_MODAL_PATH)
     print("Model loaded.")
 
 
@@ -33,3 +35,7 @@ def predict_image():
         result = jsonify(prediction)
         result.status_code = 200
     return result
+
+
+if __name__ == "__main__":
+    app.run()

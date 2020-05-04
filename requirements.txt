@@ -1,5 +1,6 @@
 ax-platform==0.1.9
 black==19.10b0
+boto3==1.13.0
 Flask==1.1.2
 gunicorn==20.0.4
 kaggle==1.5.6
@@ -7,5 +8,5 @@ numpy==1.17.4
 pandas==0.25.1
 pillow==6.2.2
 scikit-learn==0.21.3
-torch==1.4.0
-torchvision==0.5.0
+torch==1.4.0 -f https://download.pytorch.org/whl/torch_stable.html
+torchvision==0.5.0 -f https://download.pytorch.org/whl/torch_stable.html
