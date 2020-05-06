@@ -16,17 +16,17 @@ def load_model(model_path):
 
 
 def predict_from_path(stored_image, model, device, threshold=None, output_file=None):
-    image = Image.open(stored_image)
-    return predict(image, model, device, threshold, output_file)
+    image = Image.open(stored_image).convert("RGB")
+    return predict(image, model, device, threshold, output_file, show_image=True)
 
 
 def predict_from_bytes(stored_image, model, device):
-    image = Image.open(io.BytesIO(stored_image))
+    image = Image.open(io.BytesIO(stored_image)).convert("RGB")
     return predict(image, model, device)
 
 
-def predict(image, model, device, threshold=None, output_file=None):
-    transformed_image = get_transform()(image.convert("RGB"))
+def predict(image, model, device, threshold=None, output_file=None, show_image=False):
+    transformed_image = get_transform()(image)
     model_output = model([transformed_image.to(device)])
     prediction = {
         "boxes": model_output[0]["boxes"].tolist(),
@@ -38,6 +38,6 @@ def predict(image, model, device, threshold=None, output_file=None):
     }
     if threshold:
         prediction = threshold_scores(prediction, threshold)
-    if output_file:
+    if show_image or output_file:
         plot_prediction(prediction, image, output_file)
     return prediction
