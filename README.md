@@ -7,7 +7,7 @@ To try out this project, send a POST request to
 http://traffic-light-recognition.us-east-1.elasticbeanstalk.com/predict with an image in the `file` key.
 So, for example, as a cURL command:
 ```
-  curl --request POST 'http://trafficlightrecognition-env.eba-jyy6rmgy.us-east-1.elasticbeanstalk.com/predict' \
+  curl --request POST 'http://traffic-light-recognition.us-east-1.elasticbeanstalk.com/predict' \
 --form 'file=@/path/to/file.png'
 ```
 
