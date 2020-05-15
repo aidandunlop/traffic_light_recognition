@@ -13,6 +13,11 @@ So, for example, as a cURL command:
 
 This will give you the bounding boxes, scores and labels for any traffic lights the model finds in the image provided.
 
+The model is hosted on an AWS S3 bucket. Feel free to download it to play around with it yourself:
+```
+wget -c https://traffic-light-model.s3.amazonaws.com/tlr_model.pth -O /tmp/tlr_model.pth
+```
+
 ## Installation 
 To get started, set up an virtualenv with python 3.7+ installed and run `./setup.sh`.
 
