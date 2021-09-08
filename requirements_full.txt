@@ -8,7 +8,7 @@ kaggle==1.5.6
 matplotlib
 numpy==1.17.4
 pandas==0.25.1
-pillow==6.2.2
+pillow==8.3.2
 scikit-learn==0.21.3
 torch==1.4.0
 torchvision==0.5.0
